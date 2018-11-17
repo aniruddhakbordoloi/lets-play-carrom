@@ -63,31 +63,31 @@ public class PlayerTest {
 
     @Test
     public void thatThePlayerLosesAPointForThreeSuccessiveUnsuccessfulAttempts() {
-        final int three = 3;
         final CoinHolder coinHolder = new CoinHolder();
-        final Strike singleStrike = new SingleStrike();
-        final Striker striker = new Striker(singleStrike);
-        final Player player = new Player(striker);
-        singleStrike.register(coinHolder);
-        singleStrike.register(player);
-        player.playStroke();
-
-        final Strike multiStrike = new MultiStrike();
-        multiStrike.register(coinHolder);
-        multiStrike.register(player);
-        striker.setStrike(multiStrike);
-
-        player.playStroke();
-        assertThat(pointsScoredBy(player), is(three));
-
         final Strike noStrike = new NoStrike();
+        final Striker striker = new Striker(noStrike);
+        final Player player = new Player(striker);
         noStrike.register(coinHolder);
         noStrike.register(player);
         striker.setStrike(noStrike);
         player.playStroke();
         player.playStroke();
         player.playStroke();
-        assertThat(pointsScoredBy(player), is(2));
+        assertThat(pointsScoredBy(player), is(-1));
+    }
+
+    @Test
+    public void thatThePlayerLosesAPointForThreeConsecutiveFouls() {//Each Striker strike reduces a point and 3 consecutive fouls further reduces another.
+        final CoinHolder coinHolder = new CoinHolder();
+        final Strike strikerStrike = new StrikerStrike();
+        final Striker striker = new Striker(strikerStrike);
+        final Player player = new Player(striker);
+        strikerStrike.register(player);
+        strikerStrike.register(coinHolder);
+        player.playStroke();
+        player.playStroke();
+        player.playStroke();
+        assertThat(pointsScoredBy(player), is(-4));
     }
 
     private int pointsScoredBy(Player player) {
