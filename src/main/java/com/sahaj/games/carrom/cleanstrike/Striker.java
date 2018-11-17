@@ -16,6 +16,9 @@ public class Striker {
         this.strike = strike;
     }
 
+    public Striker() {
+    }
+
     public void hitCoin() {
         strike.execute();
     }
