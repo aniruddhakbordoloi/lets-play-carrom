@@ -24,4 +24,5 @@ public class Striker {
     public void hitCoin() {
         strike.execute();
     }
+
 }

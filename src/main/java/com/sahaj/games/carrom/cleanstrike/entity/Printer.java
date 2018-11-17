@@ -1,8 +1,12 @@
 package com.sahaj.games.carrom.cleanstrike.entity;
 
 /**
- * Created by Aniruddha on 17-11-2018.
+ * Created by Aniruddha on 18-11-2018.
  */
-public interface Printer {
-    void printStats(final String s);
+public class Printer implements IPrinter {
+
+    @Override
+    public void printStats(final String stats) {
+        System.out.println(stats);
+    }
 }

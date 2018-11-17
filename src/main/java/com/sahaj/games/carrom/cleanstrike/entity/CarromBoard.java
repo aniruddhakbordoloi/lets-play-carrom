@@ -16,11 +16,11 @@ public class CarromBoard {
     private CoinHolder coinHolder;
     private boolean continuePlay = true;
 
-    public void setPrinter(Printer printer) {
-        this.printer = printer;
+    public void setPrinter(IPrinter IPrinter) {
+        this.IPrinter = IPrinter;
     }
 
-    private Printer printer;
+    private IPrinter IPrinter;
 
     public CarromBoard() {
         this.coinHolder = new CoinHolder();
@@ -58,7 +58,7 @@ public class CarromBoard {
         return strike;
     }
 
-    public void play(final int player1StrikeCode, final int player2StrikeCode) {
+    public boolean play(final int player1StrikeCode, final int player2StrikeCode) {
         if (gameIsNotOver()) {
             resolveStrikeCode(player1StrikeCode, player2StrikeCode);
             assignStrikeToStriker();
@@ -66,17 +66,18 @@ public class CarromBoard {
             startGame();
 
             if (hasAnyPlayerWon()) {
-                this.printer.printStats(winningPlayer() + " won the game. Final Score: "+winnerScore()+"-"+ secondWinnerScore());
+                this.IPrinter.printStats(winningPlayer() + " won the game. Final Score: "+winnerScore()+"-"+ secondWinnerScore());
                 this.continuePlay = false;
             }
             else if(hasCoinsExhausted()) {
-                this.printer.printStats("The game is a draw.");
+                this.IPrinter.printStats("The game is a draw.");
                 this.continuePlay = false;
             }
         }
         else {
-            this.printer.printStats("The game is over. Please start a new game!");
+            this.IPrinter.printStats("The game is over. Please start a new game!");
         }
+        return this.continuePlay;
     }
 
     private boolean gameIsNotOver() {
