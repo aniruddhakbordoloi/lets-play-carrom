@@ -11,7 +11,6 @@ public class Player implements Subscriber {
     private int currentScore;
     private int NA = 0;
     private int consecutiveUnsuccessfulAttempts;
-    private int previousUnsuccessfulAttempt;
 
     public Player(Striker striker) {
         this.striker = striker;
@@ -30,12 +29,7 @@ public class Player implements Subscriber {
         final Map<String, Integer> currentStats = strike.updateCurrentStats(NA, NA, currentScore);
         this.currentScore = currentStats.get("currentScore");
         int currUnsuccessfulAttempt = currentStats.get("isAttemptUnsuccessful");
-        if(previousUnsuccessfulAttempt > 1) {
-            consecutiveUnsuccessfulAttempts = consecutiveUnsuccessfulAttempts + currUnsuccessfulAttempt;
-        }
-        else {
-            previousUnsuccessfulAttempt = currUnsuccessfulAttempt;
-        }
+        consecutiveUnsuccessfulAttempts = consecutiveUnsuccessfulAttempts + currUnsuccessfulAttempt;
         if (consecutiveUnsuccessfulAttempts == 3) {
             consecutiveUnsuccessfulAttempts = 0;
             this.currentScore = this.currentScore - 1;

@@ -63,15 +63,31 @@ public class PlayerTest {
 
     @Test
     public void thatThePlayerLosesAPointForThreeSuccessiveUnsuccessfulAttempts() {
-        final int negative = -1;
+        final int three = 3;
         final CoinHolder coinHolder = new CoinHolder();
-        final Strike noStrike = new NoStrike();
-        final Striker striker = new Striker(noStrike);
+        final Strike singleStrike = new SingleStrike();
+        final Striker striker = new Striker(singleStrike);
         final Player player = new Player(striker);
-        noStrike.register(coinHolder);
-        noStrike.register(player);
+        singleStrike.register(coinHolder);
+        singleStrike.register(player);
         player.playStroke();
 
+        final Strike multiStrike = new MultiStrike();
+        multiStrike.register(coinHolder);
+        multiStrike.register(player);
+        striker.setStrike(multiStrike);
+
+        player.playStroke();
+        assertThat(pointsScoredBy(player), is(three));
+
+        final Strike noStrike = new NoStrike();
+        noStrike.register(coinHolder);
+        noStrike.register(player);
+        striker.setStrike(noStrike);
+        player.playStroke();
+        player.playStroke();
+        player.playStroke();
+        assertThat(pointsScoredBy(player), is(2));
     }
 
     private int pointsScoredBy(Player player) {
