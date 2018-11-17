@@ -1,5 +1,7 @@
 package com.sahaj.games.carrom.cleanstrike;
 
+import com.sahaj.games.carrom.cleanstrike.entity.Printer;
+
 /**
  * Created by Aniruddha on 17-11-2018.
  */

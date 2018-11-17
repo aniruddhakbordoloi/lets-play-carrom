@@ -1,5 +1,9 @@
 package com.sahaj.games.carrom.cleanstrike;
 
+import com.sahaj.games.carrom.cleanstrike.entity.CoinHolder;
+import com.sahaj.games.carrom.cleanstrike.entity.Player;
+import com.sahaj.games.carrom.cleanstrike.entity.Striker;
+import com.sahaj.games.carrom.cleanstrike.striketypes.*;
 import org.junit.Before;
 import org.junit.Test;
 

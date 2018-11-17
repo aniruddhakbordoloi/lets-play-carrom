@@ -1,5 +1,6 @@
 package com.sahaj.games.carrom.cleanstrike;
 
+import com.sahaj.games.carrom.cleanstrike.entity.CarromBoard;
 import org.junit.Test;
 
 import static com.sahaj.games.carrom.cleanstrike.PrinterMock.getPrintedStats;

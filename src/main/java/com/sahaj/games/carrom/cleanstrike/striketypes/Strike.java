@@ -1,4 +1,7 @@
-package com.sahaj.games.carrom.cleanstrike;
+package com.sahaj.games.carrom.cleanstrike.striketypes;
+
+import com.sahaj.games.carrom.cleanstrike.Subscriber;
+import com.sahaj.games.carrom.cleanstrike.Subscription;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,7 +31,7 @@ public abstract class Strike implements Subscription {
         }
     }
 
-    void execute(){
+    public void execute(){
         addOrDeductPointsFromPlayer();
         deductCoinForTheStrikePlayed();
         notifySubscribers();
@@ -38,7 +41,7 @@ public abstract class Strike implements Subscription {
 
     protected abstract void addOrDeductPointsFromPlayer();
 
-    Map<String, Integer> updateCurrentStats(int blackCoins, int redCoins, int currentScore){
+    public Map<String, Integer> updateStatsPerStrike(int blackCoins, int redCoins, int currentScore){
         final Map<String, Integer> currentStats = new HashMap<>();
         currentStats.put("blackCoins", blackCoins - this.numberOfCoinsToDeduct);
         currentStats.put("redCoins", redCoins - this.numberOfRedCoinsToDeduct);

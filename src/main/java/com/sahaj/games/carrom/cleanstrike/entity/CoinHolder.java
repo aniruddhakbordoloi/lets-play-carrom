@@ -1,4 +1,7 @@
-package com.sahaj.games.carrom.cleanstrike;
+package com.sahaj.games.carrom.cleanstrike.entity;
+
+import com.sahaj.games.carrom.cleanstrike.Subscriber;
+import com.sahaj.games.carrom.cleanstrike.striketypes.Strike;
 
 import java.util.Map;
 
@@ -25,7 +28,7 @@ public class CoinHolder implements Subscriber {
 
     @Override
     public void update(Strike strike) {
-        final Map<String, Integer> currentStats = strike.updateCurrentStats(blackCoins, redCoins, NA);
+        final Map<String, Integer> currentStats = strike.updateStatsPerStrike(blackCoins, redCoins, NA);
         this.blackCoins = currentStats.get("blackCoins");
         this.redCoins = currentStats.get("redCoins");
     }

@@ -1,4 +1,6 @@
-package com.sahaj.games.carrom.cleanstrike;
+package com.sahaj.games.carrom.cleanstrike.entity;
+
+import com.sahaj.games.carrom.cleanstrike.striketypes.Strike;
 
 /**
  * Created by Aniruddha on 16-11-2018.
@@ -6,13 +8,13 @@ package com.sahaj.games.carrom.cleanstrike;
 
 public class Striker {
 
-    public void setStrike(Strike strike) {
+    public void setStrike(final Strike strike) {
         this.strike = strike;
     }
 
     private Strike strike;
 
-    public Striker(Strike strike) {
+    public Striker(final Strike strike) {
         this.strike = strike;
     }
 
