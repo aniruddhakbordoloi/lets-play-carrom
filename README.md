@@ -10,6 +10,11 @@ Start walking through Tests in the project. Based on the rules documented, the [
 and [PlayerTest](https://github.com/codesmack/lets-play-carrom/blob/master/src/test/java/com/sahaj/games/carrom/cleanstrike/PlayerTest.java)
 classes have been created first and worked through in parallel to start building the project with the rules. The [CarromBoardTest](https://github.com/codesmack/lets-play-carrom/blob/master/src/test/java/com/sahaj/games/carrom/cleanstrike/CarromBoardTest.java)
 is then written to build rules for winning a game or drawing a game.
+```
+A test written as: <br/>
+@Test<br/>
+public void thatThePlayerLosesAPointForThreeConsecutiveFouls(){} should be read as test_thatThePlayerLosesAPointForThreeConsecutiveFouls
+```
 
 ### Steps to play the game
 Execute the class [InputReader](https://github.com/codesmack/lets-play-carrom/blob/master/src/main/java/com/sahaj/games/carrom/cleanstrike/InputReader.java)
