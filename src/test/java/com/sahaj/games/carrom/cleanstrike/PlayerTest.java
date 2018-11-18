@@ -49,6 +49,16 @@ public class PlayerTest {
     }
 
     @Test
+    public void thatPlayerLosesTwoPointsForDefunctStrike() {
+        final CoinHolder coinHolder = new CoinHolder();
+        final Striker striker = new Striker();
+        final Player player = new Player(striker);
+        assignDefunctStrikeToStriker(coinHolder, striker, player);
+        player.playStroke();
+        assertThat(pointsScoredBy(player), is(-2));
+    }
+
+    @Test
     public void thatPlayerLosesAPointForStrikerStrike() {
         final int negative = -1;
         final CoinHolder coinHolder = new CoinHolder();

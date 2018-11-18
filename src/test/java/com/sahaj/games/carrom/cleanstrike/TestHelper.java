@@ -44,4 +44,11 @@ public class TestHelper {
         multiStrike.register(coinHolder);
         multiStrike.register(player);
     }
+
+    public static void assignDefunctStrikeToStriker(CoinHolder coinHolder, Striker striker, Player player) {
+        final Strike defunctStrike = new DefunctStrike();
+        striker.setStrike(defunctStrike);
+        defunctStrike.register(coinHolder);
+        defunctStrike.register(player);
+    }
 }
