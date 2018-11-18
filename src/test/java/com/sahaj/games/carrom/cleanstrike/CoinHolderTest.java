@@ -7,9 +7,7 @@ import com.sahaj.games.carrom.cleanstrike.striketypes.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import static com.sahaj.games.carrom.cleanstrike.TestHelper.assignMultiStrikeToStriker;
-import static com.sahaj.games.carrom.cleanstrike.TestHelper.assignRedStrikeToStriker;
-import static com.sahaj.games.carrom.cleanstrike.TestHelper.assignSingleStrike;
+import static com.sahaj.games.carrom.cleanstrike.TestHelper.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -98,11 +96,9 @@ public class CoinHolderTest {
     @Test
     public void thatTheCoinHolderHasNineCoinsWhenDefunctStrike() {
         final int nine = 9;
-        final Strike defunctStrike = new DefunctStrike();
-        final Striker striker = new Striker(defunctStrike);
+        final Striker striker = new Striker();
         final Player player = new Player(striker);
-        defunctStrike.register(coinHolder);
-        defunctStrike.register(player);
+        assignDefunctStrikeToStriker(coinHolder, striker, player);
         player.playStroke();
         assertThat(totalCoinsInHolder(), is(nine));
     }
