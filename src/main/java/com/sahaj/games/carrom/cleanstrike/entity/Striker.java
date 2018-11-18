@@ -14,10 +14,6 @@ public class Striker {
 
     private Strike strike;
 
-    public Striker(final Strike strike) {
-        this.strike = strike;
-    }
-
     public Striker() {
     }
 
