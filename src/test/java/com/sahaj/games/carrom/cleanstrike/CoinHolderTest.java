@@ -7,6 +7,9 @@ import com.sahaj.games.carrom.cleanstrike.striketypes.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import static com.sahaj.games.carrom.cleanstrike.TestHelper.assignMultiStrikeToStriker;
+import static com.sahaj.games.carrom.cleanstrike.TestHelper.assignRedStrikeToStriker;
+import static com.sahaj.games.carrom.cleanstrike.TestHelper.assignSingleStrike;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -55,11 +58,9 @@ public class CoinHolderTest {
     @Test
     public void thatTheCoinHolderHasEightBlackCoinsWhenAStrikeIsScored() {//1 coin reduced from total 9 black coins
         final int eight = 8;
-        final Strike singleStrike = new SingleStrike();
-        final Striker striker = new Striker(singleStrike);
+        final Striker striker = new Striker();
         final Player player = new Player(striker);
-        singleStrike.register(coinHolder);
-        singleStrike.register(player);
+        assignSingleStrike(striker, player, coinHolder);
         player.playStroke();
         assertThat(blackCoinsInHolder(), is(eight));
     }
@@ -67,11 +68,9 @@ public class CoinHolderTest {
     @Test
     public void thatTheCoinHolderHasSevenBlackCoinsWhenMultiStrikeIsScored() {
         final int seven = 7;
-        final Strike multiStrike = new MultiStrike();
-        final Striker striker = new Striker(multiStrike);
+        final Striker striker = new Striker();
         final Player player = new Player(striker);
-        multiStrike.register(coinHolder);
-        multiStrike.register(player);
+        assignMultiStrikeToStriker(coinHolder, striker, player);
         player.playStroke();
         assertThat(blackCoinsInHolder(), is(seven));
     }
@@ -79,11 +78,9 @@ public class CoinHolderTest {
     @Test
     public void thatTheCoinHolderHasZeroRedCoinsWhenRedStrikeIsScored() {
         final int zero = 0;
-        final Strike redStrike = new RedStrike();
-        final Striker striker = new Striker(redStrike);
+        final Striker striker = new Striker();
         final Player player = new Player(striker);
-        redStrike.register(coinHolder);
-        redStrike.register(player);
+        assignRedStrikeToStriker(coinHolder, striker, player);
         player.playStroke();
         assertThat(redCoinsInHolder(), is(zero));
     }
@@ -91,11 +88,9 @@ public class CoinHolderTest {
     @Test
     public void thatTheCoinHolderHasTotalCoinsIntactWhenStrikerStrikeIsScored() {
         final int ten = 10;
-        final Strike strikerStrike = new StrikerStrike();
-        final Striker striker = new Striker(strikerStrike);
+        final Striker striker = new Striker();
         final Player player = new Player(striker);
-        strikerStrike.register(coinHolder);
-        strikerStrike.register(player);
+        TestHelper.assignStrikerStrike(striker, player, coinHolder);
         player.playStroke();
         assertThat(totalCoinsInHolder(), is(ten));
     }
