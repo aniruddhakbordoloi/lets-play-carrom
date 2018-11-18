@@ -13,7 +13,9 @@ is then written to build rules for winning a game or drawing a game.
 ```
 A test written as:
 @Test
-public void thatThePlayerLosesAPointForThreeConsecutiveFouls(){}
+public void thatThePlayerLosesAPointForThreeConsecutiveFouls(){
+
+}
 Should be read as test_thatThePlayerLosesAPointForThreeConsecutiveFouls
 ```
 
