@@ -26,9 +26,7 @@ public abstract class Strike implements Subscription {
 
     @Override
     public void notifySubscribers() {
-        for(Subscriber subscriber : subscribers) {
-            subscriber.update(this);
-        }
+        subscribers.forEach(subscriber -> subscriber.update(this));
     }
 
     public void execute(){
