@@ -11,8 +11,8 @@ and [PlayerTest](https://github.com/codesmack/lets-play-carrom/blob/master/src/t
 classes have been created first and worked through in parallel to start building the project with the rules. The [CarromBoardTest](https://github.com/codesmack/lets-play-carrom/blob/master/src/test/java/com/sahaj/games/carrom/cleanstrike/CarromBoardTest.java)
 is then written to build rules for winning a game or drawing a game.
 ```
-A test written as: <br/>
-@Test<br/>
+A test written as:
+@Test
 public void thatThePlayerLosesAPointForThreeConsecutiveFouls(){} should be read as test_thatThePlayerLosesAPointForThreeConsecutiveFouls
 ```
 
