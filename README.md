@@ -13,7 +13,8 @@ is then written to build rules for winning a game or drawing a game.
 ```
 A test written as:
 @Test
-public void thatThePlayerLosesAPointForThreeConsecutiveFouls(){} should be read as test_thatThePlayerLosesAPointForThreeConsecutiveFouls
+public void thatThePlayerLosesAPointForThreeConsecutiveFouls(){}
+Should be read as test_thatThePlayerLosesAPointForThreeConsecutiveFouls
 ```
 
 ### Steps to play the game
