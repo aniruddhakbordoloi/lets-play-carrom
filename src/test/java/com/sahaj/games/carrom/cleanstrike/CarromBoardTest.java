@@ -13,7 +13,7 @@ import static org.junit.Assert.assertThat;
 public class CarromBoardTest {
 
     @Test
-    public void thatGameIsWonWhenTheWinnerScoresMinFiveAndThreeMoreThanOpponent() {
+    public void thatGameIsWonWhenTheWinnerScoresMinFiveAndThreeMoreThanOpponent() throws InvalidStrikeException {
         final int player1Strike = 1;
         final int player2MultiStrike = 2;
         final CarromBoard carromBoard = new CarromBoard();
@@ -29,7 +29,7 @@ public class CarromBoardTest {
     }
 
     @Test
-    public void thatGameIsADrawWhenCoinsExhaustedWithoutMinLeadForEitherPlayer() {
+    public void thatGameIsADrawWhenCoinsExhaustedWithoutMinLeadForEitherPlayer() throws InvalidStrikeException {
         final int player1MultiStrike = 2;
         final int player2MultiStrike = 2;
         final CarromBoard carromBoard = new CarromBoard();
@@ -41,7 +41,7 @@ public class CarromBoardTest {
     }
 
     @Test
-    public void thatGameCannotBeContinuedOnceOver() {
+    public void thatGameCannotBeContinuedOnceOver() throws InvalidStrikeException {
         final int player1MultiStrike = 2;
         final int player2MultiStrike = 2;
         final CarromBoard carromBoard = new CarromBoard();

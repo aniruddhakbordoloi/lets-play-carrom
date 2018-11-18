@@ -1,5 +1,6 @@
 package com.sahaj.games.carrom.cleanstrike.entity;
 
+import com.sahaj.games.carrom.cleanstrike.InvalidStrikeException;
 import com.sahaj.games.carrom.cleanstrike.striketypes.*;
 
 /**
@@ -30,7 +31,7 @@ public class CarromBoard {
         this.player2 = new Player(this.player2Striker);
     }
 
-    private Strike resolveStrikeCode(final int playerStrikeCode) {
+    private Strike resolveStrikeCode(final int playerStrikeCode) throws InvalidStrikeException {
         final Strike strike;
         switch(playerStrikeCode) {
             case 1:
@@ -52,13 +53,14 @@ public class CarromBoard {
                 strike = new NoStrike();
                 break;
             default:
-                strike = new NoStrike();
-                break;
+                /*strike = new NoStrike();
+                break;*/
+                throw new InvalidStrikeException("You have chosen an incorrect input. Please select a number from the provided list.");
         }
         return strike;
     }
 
-    public boolean play(final int player1StrikeCode, final int player2StrikeCode) {
+    public boolean play(final int player1StrikeCode, final int player2StrikeCode) throws InvalidStrikeException {
         if (gameIsNotOver()) {
             resolveStrikeCode(player1StrikeCode, player2StrikeCode);
             assignStrikeToStriker();
@@ -106,7 +108,7 @@ public class CarromBoard {
         this.player2Striker.setStrike(this.player2Strike);
     }
 
-    private void resolveStrikeCode(int player1StrikeCode, int player2StrikeCode) {
+    private void resolveStrikeCode(int player1StrikeCode, int player2StrikeCode) throws InvalidStrikeException {
         this.player1Strike = resolveStrikeCode(player1StrikeCode);
         this.player2Strike = resolveStrikeCode(player2StrikeCode);
     }
