@@ -94,6 +94,36 @@ public class PlayerTest {
         assertThat(pointsScoredBy(player), is(-4));
     }
 
+    @Test
+    public void thatAlternateFoulsAreNotConsideredConsecutive() {
+        final CoinHolder coinHolder = new CoinHolder();
+        final Striker striker = new Striker();
+        final Player player = new Player(striker);
+        assignFoulStrike(striker, player, coinHolder);
+        player.playStroke();
+        assignSingleStrike(striker, player, coinHolder);
+        player.playStroke();
+        assignFoulStrike(striker, player, coinHolder);
+        player.playStroke();
+        assignFoulStrike(striker, player, coinHolder);
+        player.playStroke();
+        assertThat(pointsScoredBy(player), is(-2));
+    }
+
+    private void assignSingleStrike(final Striker striker, final Player player, final CoinHolder coinHolder) {
+        final Strike singleStrike = new SingleStrike();
+        singleStrike.register(player);
+        singleStrike.register(coinHolder);
+        striker.setStrike(singleStrike);
+    }
+
+    private void assignFoulStrike(final Striker striker, final Player player, final CoinHolder coinHolder) {
+        final Strike foulStrike = new StrikerStrike();
+        foulStrike.register(player);
+        foulStrike.register(coinHolder);
+        striker.setStrike(foulStrike);
+    }
+
     private int pointsScoredBy(Player player) {
         return player.currentScore();
     }

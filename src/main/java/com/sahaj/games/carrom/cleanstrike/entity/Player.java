@@ -31,11 +31,14 @@ public class Player implements Subscriber {
     public void update(Strike strike) {
         final Map<String, Integer> currentStats = strike.updateStatsPerStrike(NA, NA, currentScore);
         this.currentScore = currentStats.get("currentScore");
-        deductScoreForConsecutiveUnsuccessfulAttempts(currentStats);
+        deductScoreIfConsecutiveUnsuccessfulAttempts(currentStats);
     }
 
-    private void deductScoreForConsecutiveUnsuccessfulAttempts(Map<String, Integer> currentStats) {
+    private void deductScoreIfConsecutiveUnsuccessfulAttempts(Map<String, Integer> currentStats) {
         int currUnsuccessfulAttempt = currentStats.get("isAttemptUnsuccessful");
+        if (currUnsuccessfulAttempt == 0) {
+            consecutiveUnsuccessfulAttempts = 0;
+        }
         consecutiveUnsuccessfulAttempts = consecutiveUnsuccessfulAttempts + currUnsuccessfulAttempt;
         if (consecutiveUnsuccessfulAttempts == 3) {
             consecutiveUnsuccessfulAttempts = 0;
